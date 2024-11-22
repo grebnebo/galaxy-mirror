@@ -158,7 +158,7 @@ func (g *GalaxyProxy) Api(c *gin.Context) {
 		"available_versions": gin.H{
 			"v1": "v1/",
 			"v2": "v2/",
-			//"v3": "v3/",
+			"v3": "v3/",
 		},
 		"current_version": "v1",
 		"description": "Galaxy Proxy",
@@ -262,6 +262,27 @@ func main() {
     r.GET("/api/v2/collections/:namespace/:name/", galaxy_proxy.UpstreamHandler)
     r.GET("/api/v2/collections/:namespace/:name/versions/", galaxy_proxy.UpstreamHandler)
     r.GET("/api/v2/collections/:namespace/:name/versions/:version/", galaxy_proxy.UpstreamHandler)
+// v3
+r.GET("/api/v3/", galaxy_proxy.UpstreamHandler)
+
+// v3 ns
+r.GET("/api/v3/namespaces/", galaxy_proxy.UpstreamHandler)
+r.GET("/api/v3/namespaces/:namespace_id/", galaxy_proxy.UpstreamHandler)
+
+// v3 collec
+r.GET("/api/v3/plugin/ansible/content/published/collections/index/", galaxy_proxy.UpstreamHandler)
+r.GET("/api/v3/plugin/ansible/content/published/collections/index/:namespace/:name/", galaxy_proxy.UpstreamHandler)
+r.GET("/api/v3/plugin/ansible/content/published/collections/index/:namespace/:name/versions/", galaxy_proxy.UpstreamHandler)
+r.GET("/api/v3/plugin/ansible/content/published/collections/index/:namespace/:name/versions/:version/", galaxy_proxy.UpstreamHandler)
+// support /api/v3/plugin
+r.GET("/api/v3/plugin/ansible/content/published/collections/artifacts/:artifact", galaxy_proxy.ArtifactHandler)
+// support for /api/v3/collections
+r.GET("/api/v3/collections/:namespace/:name/versions/", galaxy_proxy.UpstreamHandler)
+// v3
+r.GET("/api/v3/collections/:namespace/:name/versions/:version/", galaxy_proxy.UpstreamHandler)
+
+// v3
+r.GET("/api/v3/collections/:namespace/:name/", galaxy_proxy.UpstreamHandler)
 
     // downloads
     r.GET("/download/:artifact", galaxy_proxy.ArtifactHandler)
