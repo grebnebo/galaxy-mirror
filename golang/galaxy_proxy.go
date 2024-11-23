@@ -234,7 +234,7 @@ func main() {
     galaxy_proxy := GalaxyProxy{}
 
     flag.StringVar(&artifacts, "artifacts", "artifacts", "Location of the artifacts dir")
-    flag.StringVar(&port, "port", "5000", "Port")
+    flag.StringVar(&port, "port", "80", "Port")
     flag.Parse()
 
     r := gin.Default()
