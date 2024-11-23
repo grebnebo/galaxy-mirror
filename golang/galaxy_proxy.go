@@ -234,7 +234,7 @@ func main() {
     galaxy_proxy := GalaxyProxy{}
 
     flag.StringVar(&artifacts, "artifacts", "artifacts", "Location of the artifacts dir")
-    flag.StringVar(&port, "port", "80", "Port")
+    flag.StringVar(&port, "port", "5000", "Port")
     flag.Parse()
 
     r := gin.Default()
@@ -255,7 +255,8 @@ func main() {
     r.GET("/api/v1/roles/", galaxy_proxy.UpstreamHandler)
     r.GET("/api/v1/roles/:roleid/", galaxy_proxy.UpstreamHandler)
     r.GET("/api/v1/roles/:roleid/versions/", galaxy_proxy.UpstreamHandler)
-
+    // add new route for search
+    r.GET("/api/v1/search/roles/", galaxy_proxy.UpstreamHandler) // newrty 
     // v2
     r.GET("/api/v2/", galaxy_proxy.UpstreamHandler)
     r.GET("/api/v2/collections/", galaxy_proxy.UpstreamHandler)
@@ -290,3 +291,4 @@ r.GET("/api/v3/collections/:namespace/:name/", galaxy_proxy.UpstreamHandler)
     //r.Static("/artifacts", amanda.Artifacts)
     r.Run("0.0.0.0:" + port)
 }
+
