@@ -28,7 +28,7 @@ Golang
 The container will listen on port 80 for incoming requests and will either forward the request off to galaxy.ansible.com or return the previously cached response from disk.
 
 Each cached response will live in the /app/.cache directory on the container.
-
+env GALAXY_PROXY_CACHE, GALAXY_PROXY_PORT
 
 
 Clients

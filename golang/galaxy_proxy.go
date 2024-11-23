@@ -236,7 +236,9 @@ func main() {
     flag.StringVar(&artifacts, "artifacts", "artifacts", "Location of the artifacts dir")
     flag.StringVar(&port, "port", "80", "Port")
     flag.Parse()
-
+    if envPort := os.Getenv("GALAXY_PROXY_PORT"); envPort != "" {
+        port = envPort
+    }
     r := gin.Default()
     r.RedirectTrailingSlash = true
     r.Use(location.Default())
